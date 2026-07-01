@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isMarketInitialized = false;
 
     // Helper for backend API base URL
-    const API_BASE_URL = window.location.port === '3000' ? '' : 'http://localhost:3000';
+    const API_BASE_URL = (window.location.protocol === 'file:' || ((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port && window.location.port !== '3000')) ? 'http://localhost:3000' : '';
 
     // --- Functions ---
     const showDashboard = () => {

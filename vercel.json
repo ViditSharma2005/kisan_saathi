@@ -1,0 +1,55 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/style.css",
+      "dest": "/style.css"
+    },
+    {
+      "src": "/script.js",
+      "dest": "/script.js"
+    },
+    {
+      "src": "/profile.js",
+      "dest": "/profile.js"
+    },
+    {
+      "src": "/MarketPrice.js",
+      "dest": "/MarketPrice.js"
+    },
+    {
+      "src": "/chatbot.js",
+      "dest": "/chatbot.js"
+    },
+    {
+      "src": "/languages/(.*)",
+      "dest": "/languages/$1"
+    },
+    {
+      "src": "/Video/(.*)",
+      "dest": "/Video/$1"
+    },
+    {
+      "src": "/demo.html",
+      "dest": "/demo.html"
+    },
+    {
+      "src": "/index.html",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/",
+      "dest": "/index.html"
+    }
+  ]
+}

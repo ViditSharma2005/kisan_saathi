@@ -14,12 +14,32 @@ const ai = process.env.GEMINI_API_KEY ? new GoogleGenAI({ apiKey: process.env.GE
 // Middleware to parse JSON (increased limit for image uploads) and enable CORS
 app.use(cors());
 app.use(express.json({ limit: '15mb' }));
-app.use(express.static(__dirname));
+
+// Serve static assets locally; skip on Vercel edge/serverless to avoid routing conflicts
+if (!process.env.VERCEL) {
+    app.use(express.static(__dirname));
+}
 
 // MongoDB Connection Setup
 const mongoUri = process.env.MONGODB_URI || "mongodb://localhost:27017";
 const client = new MongoClient(mongoUri);
 let db;
+let dbPromise = null;
+
+async function getDb() {
+    if (db) return db;
+    if (!dbPromise) {
+        dbPromise = client.connect().then(() => {
+            console.log("Connected successfully to MongoDB!");
+            db = client.db("KisanSaathi");
+            return db;
+        }).catch(err => {
+            console.error("Warning: Failed to connect to MongoDB Atlas/Local.", err.message);
+            return null;
+        });
+    }
+    return dbPromise;
+}
 
 // Helper: Password Hashing using Node built-in crypto
 function hashPassword(password) {
@@ -43,6 +63,7 @@ function verifyPassword(password, storedHash) {
 // SIGNUP Endpoint
 app.post('/api/signup', async (req, res) => {
     try {
+        await getDb();
         if (!db) return res.status(503).json({ message: 'Database service unavailable.' });
         const { fullName, farmerId, password, location, landSize, primaryCrops } = req.body;
 
@@ -80,6 +101,7 @@ app.post('/api/signup', async (req, res) => {
 // LOGIN Endpoint
 app.post('/api/login', async (req, res) => {
     try {
+        await getDb();
         if (!db) return res.status(503).json({ message: 'Database service unavailable.' });
         const { farmerId, password } = req.body;
 
@@ -328,23 +350,16 @@ app.post('/api/ai/chat', async (req, res) => {
     }
 });
 
-// --- Start Server and Connect to DB ---
-async function startServer() {
-    try {
-        await client.connect();
-        console.log("Connected successfully to MongoDB!");
-        db = client.db("KisanSaathi");
-        
+// --- Start Server Locally (only when not running in Vercel Serverless environment) ---
+if (!process.env.VERCEL) {
+    async function startServer() {
+        await getDb();
         app.listen(port, () => {
             console.log(`Server running at http://localhost:${port}`);
         });
-    } catch (error) {
-        console.error("Warning: Failed to connect to MongoDB Atlas/Local on startup.", error.message);
-        console.log("Starting Express server anyway (AI features will work; DB operations will report unavailable)...");
-        app.listen(port, () => {
-            console.log(`Server running at http://localhost:${port} (without MongoDB)`);
-        });
     }
+    startServer();
 }
 
-startServer();
+// Export app for Vercel serverless environment
+module.exports = app;

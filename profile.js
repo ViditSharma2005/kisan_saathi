@@ -6,7 +6,7 @@ function safeTranslatePage() {
 }
 
 // Helper to determine API base URL
-const API_BASE_URL = window.location.port === '3000' ? '' : 'http://localhost:3000';
+const API_BASE_URL = (window.location.protocol === 'file:' || ((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port && window.location.port !== '3000')) ? 'http://localhost:3000' : '';
 
 // This function will be called from script.js when the profile tab is clicked.
 function initializeProfileTab() {

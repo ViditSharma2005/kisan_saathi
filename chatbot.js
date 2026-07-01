@@ -1,6 +1,6 @@
 // --- CHATBOT MODULE ---
 
-const API_BASE_URL = window.location.port === '3000' ? '' : 'http://localhost:3000';
+const API_BASE_URL = (window.location.protocol === 'file:' || ((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port && window.location.port !== '3000')) ? 'http://localhost:3000' : '';
 
 export const renderChatbot = () => {
     const chatbotContainer = document.getElementById('advisory-content') || document.getElementById('chatbot-content');

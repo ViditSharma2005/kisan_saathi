@@ -414,7 +414,7 @@ function getDateRange() {
 async function fetchMandiDataFlexible(params = {}) {
     // API key handled securely via backend proxy (.env)
     const MARKET_API_KEY = "";
-    const apiBaseUrl = window.location.port === '3000' ? '' : 'http://localhost:3000';
+    const apiBaseUrl = (window.location.protocol === 'file:' || ((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port && window.location.port !== '3000')) ? 'http://localhost:3000' : '';
     const queryParts = [];
     queryParts.push(`limit=${params.limit || 500}`);
     if (params.state) queryParts.push(`state=${encodeURIComponent(params.state)}`);
