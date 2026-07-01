@@ -1,0 +1,261 @@
+/* Floating Action Button Hover Effect */
+.floating-action-btn {
+    box-shadow: 0 4px 12px hsl(var(--primary) / 0.18);
+    transform: translateY(0);
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+.floating-action-btn:hover {
+    box-shadow: 0 8px 24px hsl(var(--primary) / 0.28);
+    transform: translateY(-4px) scale(1.04);
+    filter: brightness(1.08);
+}
+:root {
+    --background: 60 9% 98%;
+    --foreground: 120 15% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 120 15% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 120 15% 15%;
+    --primary: 120 40% 40%;
+    --primary-foreground: 0 0% 98%;
+    --primary-light: 120 45% 50%;
+    --primary-dark: 120 35% 30%;
+    --secondary: 45 25% 85%;
+    --secondary-foreground: 120 15% 15%;
+    --muted: 60 9% 96%;
+    --muted-foreground: 120 10% 45%;
+    --accent: 90 40% 88%;
+    --accent-foreground: 120 15% 15%;
+    --success: 120 60% 35%;
+    --success-foreground: 0 0% 98%;
+    --warning: 35 85% 55%;
+    --warning-foreground: 0 0% 98%;
+    --destructive: 0 75% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 120 15% 90%;
+    --input: 120 15% 95%;
+    --ring: 120 40% 40%;
+    --radius: 0.75rem;
+    --earth-brown: 30 25% 40%;
+    --soil-dark: 25 20% 25%;
+    --crop-yellow: 45 90% 60%;
+    --sky-blue: 200 80% 70%;
+    --water-blue: 200 60% 45%;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+}
+
+/* NEW: General Input Field Styling */
+input[type="text"],
+input[type="password"],
+input[type="tel"],
+input[type="number"] {
+    background-color: hsl(var(--muted));
+    border: 1px solid hsl(var(--border));
+    padding: 0.65rem 0.75rem; /* Added padding */
+    border-radius: 0.5rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-light)));
+}
+
+.gradient-earth {
+    background: linear-gradient(135deg, hsl(var(--earth-brown)), hsl(30 35% 50%));
+}
+
+.gradient-success {
+    background: linear-gradient(135deg, hsl(var(--success)), hsl(120 70% 45%));
+}
+
+.gradient-sky {
+    background: linear-gradient(135deg, hsl(var(--sky-blue)), hsl(220 70% 80%));
+}
+
+.shadow-card {
+    box-shadow: 0 4px 12px hsl(var(--primary) / 0.15);
+}
+
+.transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Tab Styles */
+.dashboard-tab[data-state='active'] {
+    background-color: hsl(var(--card));
+    color: hsl(var(--card-foreground));
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+.tabs-list {
+     background-color: hsl(var(--muted));
+}
+
+/* Language Switcher Styles */
+.lang-btn {
+    transition: background-color 0.2s, color 0.2s;
+}
+.lang-btn.active {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    font-weight: 600;
+}
+
+/* Pest Detection Styles */
+.pest-upload-area {
+    border: 2px dashed hsl(var(--border));
+    transition: border-color 0.3s;
+}
+.pest-upload-area:hover, .pest-upload-area.dragover {
+    border-color: hsl(var(--primary));
+}
+.pest-upload-icon {
+    font-size: 3rem;
+    animation: float 3s ease-in-out infinite;
+}
+.result-card {
+    background: hsl(var(--muted));
+    padding: 1rem;
+    border-radius: var(--radius);
+    border: 1px solid hsl(var(--border));
+}
+.result-card h4 {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+.result-card h4.healthy { color: hsl(var(--success)); }
+.result-card h4.low-severity { color: hsl(var(--warning)); }
+.result-card h4.high-severity { color: hsl(var(--destructive)); }
+.result-card .section-title {
+    font-weight: 600;
+    color: hsl(var(--primary));
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+.error-message {
+    background-color: hsl(var(--destructive)/0.1);
+    color: hsl(var(--destructive));
+    padding: 1rem;
+    border-radius: var(--radius);
+    border-left: 4px solid hsl(var(--destructive));
+}
+.spinner {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 4px solid hsl(var(--border));
+    border-top: 4px solid hsl(var(--primary));
+    border-radius: 50%;
+    animation: spin 1.2s linear infinite;
+    margin: 0 auto 1rem;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* Message Modal Styles */
+
+/* NEW: Weather Tab Styles */
+.weather-card {
+    background-color: white;
+    border-radius: var(--radius);
+    border: 1px solid hsl(var(--border));
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    height: 100%;
+}
+.weather-icon {
+    width: 80px;
+    height: 80px;
+}
+.weather-advice-card {
+    background: linear-gradient(135deg, hsl(var(--primary)/0.1), hsl(var(--primary)/0.2));
+    border-left: 4px solid hsl(var(--primary));
+}
+
+.result-card{
+    margin-top: 10px;
+}
+
+.rain-bar {
+    background-color: hsl(var(--muted));
+    border-radius: 4px;
+    overflow: hidden;
+    height: 1.25rem;
+}
+
+.rain-bar-fill {
+    background-color: hsl(var(--water-blue));
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 4px;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: width 0.5s ease-in-out;
+}
+
+/* NEW: Chatbot Styles */
+.chat-message {
+    display: flex;
+    margin-bottom: 0.75rem;
+}
+
+.chat-message-user {
+    justify-content: flex-end;
+}
+
+.chat-message-ai {
+    justify-content: flex-start;
+}
+
+.chat-bubble {
+    max-width: 80%;
+    padding: 0.75rem 1rem;
+    border-radius: 1.25rem;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+.chat-message-user .chat-bubble {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-light)));
+    color: hsl(var(--primary-foreground));
+    border-bottom-right-radius: 0.25rem;
+}
+
+.chat-message-ai .chat-bubble {
+    background-color: hsl(var(--muted));
+    color: hsl(var(--foreground));
+    border-bottom-left-radius: 0.25rem;
+}
+
+.typing-indicator span {
+    height: 8px;
+    width: 8px;
+    background-color: hsl(var(--muted-foreground));
+    border-radius: 50%;
+    display: inline-block;
+    animation: wave 1.3s infinite;
+}
+.typing-indicator span:nth-of-type(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-of-type(3) { animation-delay: 0.4s; }
+
+@keyframes wave {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-8px); }
+}

@@ -1,0 +1,6 @@
+# Ignore Check file folder
+Check file/
+.git/
+node_modules/
+PPT/
+.env

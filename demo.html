@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kisan Saathi - Demo Video</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="antialiased bg-black text-white flex flex-col h-screen">
+
+    <header class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center flex-shrink-0">
+        <h1 class="text-2xl font-bold">Kisan Saathi Demo</h1>
+        <a href="javascript:history.back()"
+            class="bg-gray-800 border border-gray-600 text-gray-200 font-medium py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m12 19-7-7 7-7" />
+                <path d="M19 12H5" />
+            </svg>
+            Back
+        </a>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center overflow-hidden">
+        <!-- 
+            IMPORTANT: 
+            Replace 'demo-video.mp4' with the actual name of your video file.
+            The video file should be in the same directory as this demo.html file.
+        -->
+        <video controls autoplay muted playsinline class="max-w-full max-h-full">
+            <source src="Video/video2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </main>
+
+    <footer class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex-shrink-0">
+        <div class="bg-gray-900/50 backdrop-blur-sm rounded-lg p-4 text-center">
+            <h2 class="text-xl font-semibold mb-1">Platform Walkthrough</h2>
+            <p class="text-gray-300 text-sm max-w-3xl mx-auto">This video provides a complete walkthrough of the Kisan Saathi platform, showcasing its key features like weather forecasting, market price tracking, AI-powered pest detection, and the advisory chatbot.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
