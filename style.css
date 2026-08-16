@@ -754,6 +754,46 @@ header nav {
     }
 }
 
+/* ==========================================================================
+   Market tab: "Search for Mandis" form (#city-form)
+   Stops the button text from wrapping and squeezing the input on small screens
+   ========================================================================== */
+
+@media (max-width: 640px) {
+    #city-form {
+        flex-wrap: nowrap;
+    }
+
+    #city-form #city-input {
+        min-width: 0;
+    }
+
+    #city-form button[type="submit"] {
+        flex-shrink: 0;
+        white-space: nowrap;
+        padding-left: 0.85rem;
+        padding-right: 0.85rem;
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 420px) {
+    #city-form {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+    }
+
+    #city-form #city-input {
+        width: 100%;
+    }
+
+    #city-form button[type="submit"] {
+        width: 100%;
+        white-space: nowrap;
+    }
+}
+
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
     .floating-action-btn,
